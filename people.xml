@@ -7,7 +7,7 @@
 		<nationality>Senegal</nationality>
 		<jobtitle>Regional Representative</jobtitle>
 		<image>images/people/abdou_f.jpg</image>
-		<video>videos/abdou_f.flv</video>
+		<video>video/abdou_f.flv</video>
 		<audio>audio/abdou_f.mp3</audio>
 	</person>
 	<person>
@@ -16,7 +16,7 @@
 		<nationality>Kenya</nationality>
 		<jobtitle>Economist</jobtitle>
 		<image>images/people/andrew_m.jpg</image>
-		<video>videos/andrew_m.flv</video>
+		<video>video/andrew_m.flv</video>
 		<audio>audio/andrew_m.mp3</audio>
 	</person>
 	<person>
@@ -25,7 +25,7 @@
 		<nationality>India</nationality>
 		<jobtitle>Capacity Builder</jobtitle>
 		<image>images/people/purvi_m.jpg</image>
-		<video>videos/purvi_m.flv</video>
+		<video>video/purvi_m.flv</video>
 		<audio>audio/purvi_m.mp3</audio>
 	</person>
 	<person>
@@ -34,7 +34,7 @@
 		<nationality>Ireland</nationality>
 		<jobtitle>Epidemiologist</jobtitle>
 		<image>images/people/delia_g.jpg</image>
-		<video>videos/delia_g.flv</video>
+		<video>video/delia_g.flv</video>
 		<audio>audio/delia_g.mp3</audio>
 	</person>
 	<person>
@@ -44,7 +44,7 @@
 		<nationality>Zimbabwe</nationality>
 		<jobtitle>Regional Representative</jobtitle>
 		<image>images/people/siboniso_m.jpg</image>
-		<video>videos/siboniso_m.flv</video>
+		<video>video/siboniso_m.flv</video>
 		<audio>audio/siboniso_m.mp3</audio>
 	</person>
 	<person>
@@ -61,7 +61,7 @@
 		<nationality>India</nationality>
 		<jobtitle>Social Scientist</jobtitle>
 		<image>images/people/ranjitha_p.jpg</image>
-		<video>videos/ranjitha_p.flv</video>
+		<video>video/ranjitha_p.flv</video>
 		<audio>audio/ranjitha_p.mp3</audio>
 	</person>
 	<person>
@@ -79,7 +79,7 @@
 		<nationality>Scotland</nationality>
 		<jobtitle>Regional Representative</jobtitle>
 		<image>images/people/iain_w.jpg</image>
-		<video>videos/iain_w.flv</video>
+		<video>video/iain_w.flv</video>
 		<audio>audio/iain_w.mp3</audio>
 	</person>
 	<person>
@@ -88,7 +88,7 @@
 		<nationality>India</nationality>
 		<jobtitle>Anthropologist</jobtitle>
 		<image>images/people/arindam_s.jpg</image>
-		<video>videos/arindam_s.flv</video>
+		<video>video/arindam_s.flv</video>
 		<audio>audio/arindam_s.mp3</audio>
 	</person>
 	<person>
@@ -105,7 +105,7 @@
 		<nationality>Netherlands</nationality>
 		<jobtitle>Veterinarian</jobtitle>
 		<image>images/people/saskia_h.jpg</image>
-		<video>videos/saskia_h.flv</video>
+		<video>video/saskia_h.flv</video>
 		<audio>audio/saskia_h.mp3</audio>
 	</person>
 	<person>
@@ -114,7 +114,7 @@
 		<jobtitle>Knowledge Sharer</jobtitle>
 		<nationality>Scotland</nationality>
 		<image>images/people/peter_b.jpg</image>
-		<video>videos/peter_b.flv</video>
+		<video>video/peter_b.flv</video>
 		<audio>audio/peter_b.mp3</audio>
 	</person>
 	<person>
@@ -131,7 +131,7 @@
 		<nationality>Sweden</nationality>
 		<jobtitle>Bioinformatician</jobtitle>
 		<image>images/people/martin_n.jpg</image>
-		<video>videos/martin_n.flv</video>
+		<video>video/martin_n.flv</video>
 		<audio>audio/martin_n.mp3</audio>
 	</person>
 	<person>
@@ -140,7 +140,7 @@
 		<nationality>USA</nationality>
 		<jobtitle>Social Scientist</jobtitle>
 		<image>images/people/polly_e.jpg</image>
-		<video>videos/polly_e.flv</video>
+		<video>video/polly_e.flv</video>
 		<audio>audio/polly_e.mp3</audio>
 	</person>
 	<person>
@@ -221,8 +221,8 @@
 		<nationality>Kenya</nationality>
 		<jobtitle>Social Scientist</jobtitle>
 		<image>images/people/jemimah_n.jpg</image>
-		<startimage>videos/jemimah_n.jpg</startimage>
-		<video>videos/jemimah_n.flv</video>
+		<startimage>images/people/jemimah_n_video.jpg</startimage>
+		<video>video/jemimah_n.flv</video>
 		<audio>audio/jemimah_n.mp3</audio>
 		<featured>true</featured>
 		<description>watch a video about why her work with ilri matters to her</description>
@@ -233,10 +233,10 @@
 		<nationality>UK</nationality>
 		<jobtitle>Computer Scientist</jobtitle>
 		<image>images/people/andy_and_phil.jpg</image>
-		<startimage>videos/andy_and_phil.jpg</startimage>
+		<startimage>images/people/andy_and_phil_video.jpg</startimage>
 		<description>watch a video about why they love working with ilri</description>
 		<featured>true</featured>
-		<video>videos/andy_and_phil.flv</video>
+		<video>video/andy_and_phil.flv</video>
 		<audio>audio/andy_and_phil.mp3</audio>
 	</person>
 	<person>
@@ -245,10 +245,10 @@
 		<nationality>USA</nationality>
 		<jobtitle>Computer Scientist</jobtitle>
 		<image>images/people/alan_o.jpg</image>
-		<startimage>videos/alan_o.jpg</startimage>
+		<startimage>images/people/alan_o_video.jpg</startimage>
 		<featured>true</featured>
 		<description>watch a video about why he likes being a computer systems specialist in a livestock institute</description>
-		<video>videos/alan_o.flv</video>
+		<video>video/alan_o.flv</video>
 		<audio>audio/alan_o.mp3</audio>
 	</person>
 	<person>
@@ -297,7 +297,7 @@
 		<nationality>French</nationality>
 		<specialty>Epidedimiologist</specialty>
 		<organization>Institute of Immunology and Infection Research, University of Edinburgh</organization>
-		<video>videos/eric_f.flv</video>
+		<video>video/eric_f.flv</video>
 		<audio>audio/eric_f.mp3</audio>
 		<newways>true</newways>
 	</person>
