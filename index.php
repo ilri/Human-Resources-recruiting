@@ -392,6 +392,17 @@
 <script type="text/javascript" src="scripts/jquery.tools.min.js"></script>
 <script type="text/javascript" src="scripts/people.js"></script>
 <script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-10691096-11']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<script type="text/javascript">
 <? 
 	// print out our featured people's information so we can swap it in javascript
 	echo 'var featured = new Array();'."\n";
