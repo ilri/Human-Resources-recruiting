@@ -1,5 +1,4 @@
 body {
-	/*font-family: Verdana, sans-serif;*/
 	font-family: "Lucida Grande","Lucida Sans","Lucida Sans Unicode","DejaVu Sans",Arial,sans-serif;
 	color: black;
 	background-color: #CECECE;
@@ -43,8 +42,7 @@ a:hover, a:visited:hover {
 
 #banner {
 	width: 960px;
-	height: 127px;
-	background-image: url('../images/Beca_Banner.jpg');
+	height: 174px;
 }
 
 #banner img {
@@ -343,9 +341,9 @@ div#featureLeft {
 	float: left;
 }
 
-div#featureLeftTop {
+div#featureLeftTop, div#featureLeftTopMeta {
 	width: 392px;
-	height: 148px;
+	height: 74px;
 }
 
 div#featureLeftBottom {
@@ -359,7 +357,7 @@ div#featureLeftBottom #featured {
 	display: block;
 	position: absolute;
 	bottom: 0;
-	left: 24px;	/* 368 + 24 = 329px... we want some space on the left of the video */
+	left: 24px;	/* 368 + 24 = 392px... we want some space on the left of the video */
 }
 
 div#featureRight {
@@ -375,13 +373,12 @@ div#mainFeature {
 
 div#otherFeatures {
 	float: left;
-	margin-right: 88px;
-	width: 174px;
+	width: 100%;
 	height: 105px;
 	position: relative;
 }
 
-div#otherFeatures #features {
+div#otherFeatures #featuredStaff {
 	position: absolute;
 	bottom: 5px;
 }
@@ -392,23 +389,83 @@ div#otherFeatures .person {
 	display: block;
 }
 
-div#features span.person {
+div#featuredStaff span.person {
 	color: gray;
 	margin-left: 5px;
 	width: 53px;
 	text-align: right;
 }
 
-div#features img.person {
+div#featuredCampuses {
+	margin-left: 24px;
+	height: 74px;
+	width: 122px;
+	float: left;
+}
+
+div#featuredCampuses div.campus {
+	color: gray;
 	margin-left: 8px;
 	width: 50px;
+	height: 67px;
+	text-align: center;
+}
+
+/* the first campus item shouldn't have a left margin */
+div#featuredCampuses div.campus0 {
+	margin-left: 0;
+}
+
+div#featuredCampuses div.campus span.name {
+	width: 50px;
+	height: 10px;
+	font-weight: normal;
+	color: gray;
+}
+
+div#featuredCampusesDesc {
+	height: 74px;
+	width: 246px;
+	float: left;
+	color: gray;
+	font-size: 12px;
+}
+
+div#featuredCampusesDesc h2 {
+	font-weight: normal;
+	width: 100%;
+	color: gray;
+	font-size: 14px;
+	margin-top: 4px;
+	height: 14px;
+}
+
+div#featuredCampusesDesc span.text {
+	height: 14px;
+	width: 25%;
+	color: gray;
+	font-size: 11px;
+	margin-top: 4px;
+	text-align: left;
+}
+
+div#featuredStaff img.person, div#featuredCampuses img.campus {
+	width: 50px;
+	height: 57px;
 	cursor: pointer;
+}
+
+div#featuredStaff img.person {
+	margin-left: 8px;
+}
+
+div#featuredStaff img.person3 {
+	display: none;
 }
 
 div#featureButtons {
 	width: 262px;
 	height: 100px;
-	position: absolute;
 	bottom: 0px;
 }
 

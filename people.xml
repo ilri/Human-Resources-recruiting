@@ -252,6 +252,26 @@
 		<audio>audio/alan_o.mp3</audio>
 	</person>
 	<person>
+		<name>Nairobi</name>
+		<location>Nairobi, Kenya</location>
+		<image>images/people/nairobi_campus.jpg</image>
+		<startimage>images/people/nairobi_campus_video.jpg</startimage>
+		<description>watch a video about what makes the Nairobi campus special</description>
+		<video>video/nairobi_campus.flv</video>
+		<audio>audio/nairobi_campus.mp3</audio>
+		<iscampus>true</iscampus>
+	</person>
+	<person>
+		<name>Addis Ababa</name>
+		<location>Addis Ababa, Ethiopia</location>
+		<image>images/people/addis_campus.jpg</image>
+		<startimage>images/people/addis_campus_video.jpg</startimage>
+		<description>watch a video about what makes the Addis campus special</description>
+		<video>video/addis_campus.flv</video>
+		<audio>audio/addis_campus.mp3</audio>
+		<iscampus>true</iscampus>
+	</person>
+	<person>
 		<name>Florence Landsburg</name>
 		<image>images/people/florence_l.jpg</image>
 		<nationality>?</nationality>

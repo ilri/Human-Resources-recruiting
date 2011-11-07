@@ -12,6 +12,10 @@ $(window).load(function() {
 		}
 	});
 
+	// set the feature type on the player element so we can test it later
+	// ... "type" is either: person or campus
+	$("#featured").data("featureType","person");
+
 	// for all the video interviews
 	$('.person .video').each(function() {
 		
@@ -58,59 +62,200 @@ $(window).load(function() {
 		});
 	});
 
-	function swapPeople(x) {
-		// store the old values
-		var name = featured[0]['name'];
-		var description = featured[0]['description'];
-		var startimage = featured[0]['startimage'];
-		var video = featured[0]['media'];
-		var image = featured[0]['image'];
+	// swap "featured" videos, both people and campuses
+	function swapFeaturedVideo(featureType, x) {
+		// check which kind of video is currently loaded in the player (either: campus or person)
+		currentFeatureType = $("#featured").data("featureType");
 
-		if($featuredPlayer.isLoaded()) {
-			$featuredPlayer.getClip().update({url: featured[x]['media'], coverImage: { url: featured[x]['startimage'], scaling: "orig" }});
+		// if person is currently loaded, and we're loading another person
+		if(currentFeatureType == 'person' && featureType == 'person')
+		{
+			// store the old values
+			var name = featured_people[0]['name'];
+			var description = featured_people[0]['description'];
+			var startimage = featured_people[0]['startimage'];
+			var video = featured_people[0]['media'];
+			var image = featured_people[0]['image'];
+
+			if($featuredPlayer.isLoaded()) {
+				$featuredPlayer.getClip().update({url: featured_people[x]['media'], coverImage: { url: featured_people[x]['startimage'], scaling: "orig" }});
+			}
+			else {
+				$featuredPlayer.getClip(0).update({url: featured_people[x]['media'], coverImage: { url: featured_people[x]['startimage'], scaling: "orig" }});
+			}
+
+			// replace the values in the DOM
+			$('#crowdMemberName').html(featured_people[x]['name']);
+			$('#crowdMemberDescription').html(featured_people[x]['description']);
+			$('#mainFeature img.person').attr('src',featured_people[x]['image']).attr('title',featured_people[x]['name']).attr('alt',featured_people[x]['name']);
+			$('#featured').attr('href',featured_people[x]['media']);
+			$('#featured').css('background-image','url('+featured_people[x]['startimage']+')');
+
+			// make sure we update the "feature type"
+			$("#featured").data("featureType","person");
+
+			// swap the featured person's image out, into the "small"
+			$('#featuredStaff img.person'+x).attr('src',image).attr('title',name).attr('alt',name);
+
+			// swap the values in the array (x -> 0, 0 -> x)
+			featured_people[0]['name'] = featured_people[x]['name'];
+			featured_people[0]['description'] = featured_people[x]['description'];
+			featured_people[0]['startimage'] = featured_people[x]['startimage'];
+			featured_people[0]['media'] = featured_people[x]['media'];
+			featured_people[0]['image'] = featured_people[x]['image'];
+
+			featured_people[x]['name'] = name;
+			featured_people[x]['description'] = description;
+			featured_people[x]['startimage'] = startimage;
+			featured_people[x]['media'] = video;
+			featured_people[x]['image'] = image;
 		}
-		else {
-			$featuredPlayer.getClip(0).update({url: featured[x]['media']});
+		// if person is currently loaded, and we're loading a campus
+		else if(currentFeatureType == 'person' && featureType == 'campus')
+		{
+			// save the currently-loaded person's values into the people array as "person3"
+			featured_people['person3']['name'] = featured_people[0]['name'];
+			featured_people['person3']['description'] = featured_people[0]['description'];
+			featured_people['person3']['startimage'] = featured_people[0]['startimage'];
+			featured_people['person3']['media'] = featured_people[0]['media'];
+			featured_people['person3']['image'] = featured_people[0]['image'];
+
+			if($featuredPlayer.isLoaded()) {
+				$featuredPlayer.getClip().update({url: featured_campuses[x]['media'], coverImage: { url: featured_campuses[x]['startimage'], scaling: "orig" }});
+			}
+			else {
+				$featuredPlayer.getClip(0).update({url: featured_campuses[x]['media'], coverImage: { url: featured_campuses[x]['startimage'], scaling: "orig" }});
+			}
+
+			// replace the values in the DOM
+			$('#crowdMemberName').html(featured_campuses[x]['name']);
+			$('#crowdMemberDescription').html(featured_campuses[x]['description']);
+			$('#mainFeature img.person').attr('src',featured_campuses[x]['image']).attr('title',featured_campuses[x]['name']).attr('alt',featured_campuses[x]['name']);
+			$('#featured').attr('href',featured_campuses[x]['media']);
+			$('#featured').css('background-image','url('+featured_campuses[x]['startimage']+')');
+
+			// make sure we update the "feature type"
+			$("#featured").data("featureType","campus");
+
+			// swap the featured person's image out into the person3 placeholder
+			$('#featuredStaff img.person3').attr('src',featured_people['person3']['image']).attr('title',featured_people['person3']['name']).attr('alt',featured_people['person3']['name']);
+			$('#featuredStaff img.person3').css('display','inline')
 		}
+		// if campus is currently loaded, and we're loading a campus
+		else if(currentFeatureType == 'campus' && featureType == 'campus')
+		{
+			if($featuredPlayer.isLoaded()) {
+				$featuredPlayer.getClip().update({url: featured_campuses[x]['media'], coverImage: { url: featured_campuses[x]['startimage'], scaling: "orig" }});
+			}
+			else {
+				$featuredPlayer.getClip(0).update({url: featured_campuses[x]['media']});
+			}
 
-		// replace the values in the DOM
-		$('#crowdMemberName').html(featured[x]['name'].toLowerCase());
-		$('#crowdMemberDescription').html(featured[x]['description']);
-		$('#mainFeature img.person').attr('src',featured[x]['image']).attr('title',featured[x]['name']).attr('alt',featured[x]['name']);
-		$('#featured').attr('href',featured[x]['media']);
-		$('#featured').css('background-image','url('+featured[x]['startimage']+')');
+			// replace the values in the DOM
+			$('#crowdMemberName').html(featured_campuses[x]['name'].toLowerCase());
+			$('#crowdMemberDescription').html(featured_campuses[x]['description']);
+			$('#mainFeature img.person').attr('src',featured_campuses[x]['image']).attr('title',featured_campuses[x]['name']).attr('alt',featured_campuses[x]['name']);
+			$('#featured').attr('href',featured_campuses[x]['media']);
+			$('#featured').css('background-image','url('+featured_campuses[x]['startimage']+')');
 
-		// swap the featured person's image out, into the "small"
-		$('#features img.person'+x).attr('src',image).attr('title',name).attr('alt',name);
+			// make sure we update the "feature type"
+			$("#featured").data("featureType","campus");
+		}
+		// if campus is currently loaded, and we're loading a person
+		else if(currentFeatureType == 'campus' && featureType == 'person')
+		{
+			// we have to remember to pop person3 from their temp spot after swapping the requested staff member
+			// did the user click "person3" or another staff member?
+			if(x == 'person3')
+			{
+				// grab person3's data and stick it back in 0
+				featured_people[0]['name'] = featured_people['person3']['name'];
+				featured_people[0]['name'] = featured_people['person3']['name'];
+				featured_people[0]['description'] = featured_people['person3']['description'];
+				featured_people[0]['startimage'] = featured_people['person3']['startimage'];
+				featured_people[0]['media'] = featured_people['person3']['media'];
+				featured_people[0]['image'] = featured_people['person3']['image'];
+			}
+			// user didn't click person3, so just swap the "x" person to 0 and then put person3 in x
+			else
+			{
+				// swap the values in the array (x -> 0, 0 -> x)
+				featured_people[0]['name'] = featured_people[x]['name'];
+				featured_people[0]['description'] = featured_people[x]['description'];
+				featured_people[0]['startimage'] = featured_people[x]['startimage'];
+				featured_people[0]['media'] = featured_people[x]['media'];
+				featured_people[0]['image'] = featured_people[x]['image'];
 
-		// swap the values in the array (x -> 0, 0 -> x)
-		featured[0]['name'] = featured[x]['name'];
-		featured[0]['description'] = featured[x]['description'];
-		featured[0]['startimage'] = featured[x]['startimage'];
-		featured[0]['media'] = featured[x]['media'];
-		featured[0]['image'] = featured[x]['image'];
+				// save person3 into person "x" (the one that just got swapped above)
+				featured_people[x]['name'] = featured_people['person3']['name'];
+				featured_people[x]['description'] = featured_people['person3']['description'];
+				featured_people[x]['startimage'] = featured_people['person3']['startimage'];
+				featured_people[x]['media'] = featured_people['person3']['media'];
+				featured_people[x]['image'] = featured_people['person3']['image'];
+			}
 
-		featured[x]['name'] = name;
-		featured[x]['description'] = description;
-		featured[x]['startimage'] = startimage;
-		featured[x]['media'] = video;
-		featured[x]['image'] = image;
+			if($featuredPlayer.isLoaded()) {
+				$featuredPlayer.getClip().update({url: featured_people[0]['media'], coverImage: { url: featured_people[0]['startimage'], scaling: "orig" }});
+			}
+			else {
+				$featuredPlayer.getClip(0).update({url: featured_people[0]['media']});
+			}
+
+			// replace the values in the DOM
+			$('#crowdMemberName').html(featured_people[0]['name']);
+			$('#crowdMemberDescription').html(featured_people[0]['description']);
+			$('#mainFeature img.person').attr('src',featured_people[0]['image']).attr('title',featured_people[0]['name']).attr('alt',featured_people[0]['name']);
+			$('#featured').attr('href',featured_people[0]['media']);
+			$('#featured').css('background-image','url('+featured_people[0]['startimage']+')');
+			// and don't forget to put person3's image back into person "x" (which has just been swapped to person0)
+			$('#featuredStaff img.person'+x).attr('src',featured_people[x]['image']).attr('title',featured_people[x]['name']).attr('alt',featured_people[x]['name']);
+
+			// hide person3 again
+			$('#featuredStaff img.person3').css('display','none');
+
+			// make sure we update the "feature type"
+			$("#featured").data("featureType","person");
+		}
 	}
 
 	// swap featured people
-	$('#features img.person1').live('click', function (event) {
+	$('#featuredStaff img.person1').live('click', function (event) {
 		// disable normal link behaviour
 		event.preventDefault();
 
-		swapPeople(1);
+		swapFeaturedVideo("person",1);
 	});
 
 	// swap featured people
-	$('#features img.person2').live('click', function (event) {
+	$('#featuredStaff img.person2').live('click', function (event) {
 		// disable normal link behaviour
 		event.preventDefault();
 
-		swapPeople(2);
+		swapFeaturedVideo("person",2);
+	});
+
+	// swap featured people
+	$('#featuredStaff img.person3').live('click', function (event) {
+		// disable normal link behaviour
+		event.preventDefault();
+
+		swapFeaturedVideo("person","person3");
+	});
+
+	// swap featured campuses
+	$('#featuredCampuses img.campus0').live('click', function (event) {
+		// disable normal link behaviour
+		event.preventDefault();
+
+		swapFeaturedVideo("campus",0);
+	});
+
+	// swap featured campuses
+	$('#featuredCampuses img.campus1').live('click', function (event) {
+		// disable normal link behaviour
+		event.preventDefault();
+
+		swapFeaturedVideo("campus",1);
 	});
 
 	// select the black and white photos, and flip them on click

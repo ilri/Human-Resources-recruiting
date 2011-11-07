@@ -12,8 +12,7 @@
 
 <div id="outer">
 <div id="header">
-<?php require_once('navigation.php'); ?>
-<div id="banner"><a href="/" title="International Livestock Research Institute"><img src="http://ilri.org/sites/default/files/sky_logo.jpg" alt="International Livestock Research Institute" /></a></div>
+<div id="banner"><a href="/" title="International Livestock Research Institute"><img src="images/ilriBannerbioin.jpg" alt="International Livestock Research Institute" /></a></div>
 </div> <!-- //#header -->
 
 <div id="inner">
@@ -90,6 +89,17 @@
 		}
 	}
 
+	// put campuses in their own array
+	// there should only be two of them, as we've got two slots in the layout.
+	// ... test for the "iscampus" key to see if a person is actually a campus
+	$featured_campuses = array(); // initialize empty array
+	foreach($people as $elementnum => $person) {
+		if(array_key_exists('iscampus',$person)) {
+			array_push($featured_campuses, $people[$elementnum]);
+			unset($people[$elementnum]);
+		}
+	}
+
 	// put "New Ways of Working" people in their own array
 	// there should only be eight of them, as we've got eight slots in the layout.
 	$newways_people = array(); // initialize empty array
@@ -133,9 +143,24 @@
 				echo '<div id="feature">';
 				echo '	<div id="featureLeft">';
 				echo '		<div id="featureLeftTop">';
-				echo '			<div id="crowdMember" style="font-size: 14px; color: #6d6d6d; margin-top: 20px; margin-left: 15px; height: 64px; width: 210px; float: left;">featured ilri crowd member:</div>';
-				echo '			<div id="crowdMemberName" class="feature0" style="font-size: 20px; font-weight: 500; color: #6d6d6d; margin-top: 15px; height: 69px; width: 167px; float: left; text-align: right;">'.strtolower($featured_people[0]['name']).'</div>';
-				echo '			<div id="crowdMemberDescription" style="color: #4d4d4d; height: 74px; width: 392px; text-align: right; float: left;">'.strtolower($featured_people[0]['description']).'</div>';
+				echo '			<div id="featuredCampuses">';
+				// print the campus tours
+				for($x = 0; $x < 2; $x++) {
+					echo '				<div class="campus campus'.$x.'">'."\n";
+					echo '					<img class="campus campus'.$x.'" src="'.$featured_campuses[$x]['image'].'" title="'.$featured_campuses[$x]['name'].'" alt="'.$featured_campuses[$x]['name'].'" height="57" width="50" />'."\n";
+					echo '					<span class="name">'.strtolower($featured_campuses[$x]['name']).'</span>'."\n";
+					echo '				</div>';
+				}
+				echo '			</div>';
+				echo '			<div id="featuredCampusesDesc">';
+				echo '				<h2>what is it like to work at ilri?</h2>';
+				echo '				<span class="text">click icons to take a campus tour and find out</span>';
+				echo '			</div>';
+				echo '		</div>';
+				echo '		<div id="featureLeftTopMeta">';
+				echo '			<div id="crowdMember" style="font-size: 14px; color: #6d6d6d; margin-top: 20px; margin-left: 24px; height: 17px; width: 172px; float: left;">featured video:</div>';
+				echo '			<div id="crowdMemberName" class="feature0" style="font-size: 20px; font-weight: 600; color: #6d6d6d; margin-top: 15px; height: 22px; width: 196px; float: left; text-align: right;">'.strtolower($featured_people[0]['name']).'</div>';
+				echo '			<div id="crowdMemberDescription" style="font-size: 13px; color: #4d4d4d; height: 25px; width: 370px; margin-top: 10px; margin-left: 24px; text-align: left; float: left;">'.strtolower($featured_people[0]['description']).'</div>';
 				echo '		</div>';
 				echo '		<div id="featureLeftBottom">';
 				echo '			<a id="featured" href="'.$featured_people[0][$media_type].'" style="background-image: url('.$featured_people[0]['startimage'].');"><img src="images/play.png" class="play" height="55" width="55" /></a>';
@@ -150,10 +175,10 @@
 						echo '			</div>';
 					}
 				echo '			<div id="otherFeatures">';
-				echo '				<div id="features">';
-				echo '				<span class="person">Click icons for more featured staff</span>'."\n";
-					// show the other 2 small
-					for($x = 1; $x <= 2; $x++) {
+				echo '				<div id="featuredStaff">';
+				echo '				<span class="person">click icons for more featured staff</span>'."\n";
+					// show the other 2 small (plus one placeholder to store people temporarily)
+					for($x = 1; $x <= 3; $x++) {
 						echo '				<img class="person person'.$x.'" src="'.$featured_people[$x]['image'].'" title="'.$featured_people[$x]['name'].'" alt="'.$featured_people[$x]['name'].'" height="57" width="50" />'."\n";
 					}
 				echo 	'			</div>';
@@ -405,16 +430,32 @@
 <script type="text/javascript">
 <? 
 	// print out our featured people's information so we can swap it in javascript
-	echo 'var featured = new Array();'."\n";
+	echo 'var featured_people = new Array();'."\n";
 	for($x = 0; $x <3; $x++) {
-		echo "featured[$x] = new Array();\n";
-		echo "featured[$x]['image'] = \"".$featured_people[$x]['image']."\";\n";
-		echo "featured[$x]['name'] = \"".$featured_people[$x]['name']."\";\n";
-		echo "featured[$x]['startimage'] = \"".$featured_people[$x]['startimage']."\";\n";
-		echo "featured[$x]['description'] = \"".$featured_people[$x]['description']."\";\n";
+		echo "featured_people[$x] = new Array();\n";
+		echo "featured_people[$x]['image'] = \"".$featured_people[$x]['image']."\";\n";
+		echo "featured_people[$x]['name'] = \"".strtolower($featured_people[$x]['name'])."\";\n";
+		echo "featured_people[$x]['startimage'] = \"".$featured_people[$x]['startimage']."\";\n";
+		echo "featured_people[$x]['description'] = \"".$featured_people[$x]['description']."\";\n";
 		// use keyword 'media' on client side so that we don't have to do anything special
 		// when swapping our featured people in javascript (just swap "media", whether it's audio or video)
-		echo "featured[$x]['media'] = \"";echo $featured_people[$x][$media_type];echo "\";\n";
+		echo "featured_people[$x]['media'] = \"";echo $featured_people[$x][$media_type];echo "\";\n";
+		// person3 is where we put the currently-loaded person when we load a campus video, as there are only two "staff slots" normally
+		echo "featured_people['person3'] = new Array();\n";
+	}
+
+	// print out our featured campus' information so we can swap it in javascript
+	echo 'var featured_campuses = new Array();'."\n";
+	for($x = 0; $x <2; $x++) {
+		echo "featured_campuses[$x] = new Array();\n";
+		echo "featured_campuses[$x]['image'] = \"".$featured_campuses[$x]['image']."\";\n";
+		echo "featured_campuses[$x]['name'] = \"".strtolower($featured_campuses[$x]['name'])."\";\n";
+		echo "featured_campuses[$x]['startimage'] = \"".$featured_campuses[$x]['startimage']."\";\n";
+		echo "featured_campuses[$x]['description'] = \"".$featured_campuses[$x]['description']."\";\n";
+		// use keyword 'media' on client side so that we don't have to do anything special
+		// when swapping our featured campuses in javascript (just swap "media", whether it's audio or video)
+		echo "featured_campuses[$x]['media'] = \"";echo $featured_campuses[$x][$media_type];echo "\";\n";
+
 	}
 ?>
 </script>
